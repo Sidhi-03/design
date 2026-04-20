@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shashank Kumar — Cinematographer | Deep Green Edition</title>
+<meta name="description" content="Shashank Kumar — Cinematographer. Visual storytelling, lighting design, emotionally driven cinema."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════
+   NEW DARK GREEN & GOLD THEME
+   Sophisticated, organic, cinematic
+═══════════════════════════════ */
+:root{
+  --black: #0a120c;
+  --ink: #0e1711;
+  --panel: #111a14;
+  --surface: #16221a;
+  --border: rgba(180, 200, 160, 0.12);
+  --border-gold: rgba(210, 170, 90, 0.45);
+  --cream: #eef2e7;
+  --cream-dim: rgba(220, 230, 200, 0.7);
+  --cream-faint: rgba(220, 230, 200, 0.2);
+  --gold: #cb9e5c;
+  --gold-hi: #dfb87a;
+  --gold-bg: rgba(203, 158, 92, 0.08);
+  --display: 'Playfair Display', Georgia, serif;
+  --head: 'Syne', sans-serif;
+  --body: 'DM Sans', sans-serif;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --easeOut: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--body);
+  font-weight: 350;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--body)}
+ul{list-style:none}
+::selection{background:var(--gold);color:var(--black)}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* CURSOR — refined */
+#cur{
+  position:fixed; top:0; left:0; z-index:9999;
+  width:8px; height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:transform .08s linear, width .25s, height .25s, background .3s;
+  will-change:transform;
+  filter:drop-shadow(0 0 3px rgba(203,158,92,0.4));
+}
+body.hov #cur{
+  width:42px; height:42px;
+  background:rgba(203,158,92,0.12);
+  border:1.2px solid var(--gold);
+}
+
+/* NAV */
+.nav{
+  position:fixed; top:0; left:0; right:0;
+  z-index:900;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:28px 60px;
+  transition:padding .4s var(--ease), background .5s, border-color .5s;
+  border-bottom:1px solid transparent;
+  backdrop-filter: blur(0px);
+}
+.nav.stuck{
+  padding:16px 60px;
+  background:rgba(10,18,12,0.92);
+  backdrop-filter:blur(18px);
+  border-color:var(--border);
+}
+.nav-logo{
+  font-family:var(--head);
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--cream);
+  text-shadow:0 0 2px rgba(0,0,0,0.3);
+}
+.nav-links{display:flex;gap:44px}
+.nav-links a{
+  font-family:var(--head);
+  font-size:.68rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--cream-dim);
+  position:relative;
+  transition:color .3s;
+  font-weight:500;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute; bottom:-6px; left:0;
+  width:0; height:1.5px;
+  background:var(--gold);
+  transition:width .4s var(--ease);
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--head);
+  font-size:.65rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  border:1px solid var(--border-gold);
+  padding:10px 24px;
+  color:var(--gold);
+  background: transparent;
+  transition: all .35s;
+  border-radius: 0;
+}
+.nav-cta:hover{background:var(--gold); color:var(--black); border-color:var(--gold); letter-spacing:.28em;}
+
+.burger{
+  display:none;
+  flex-direction:column; gap:7px;
+  background:none; border:none;
+  padding:4px;
+}
+.burger span{display:block; width:24px; height:1.5px; background:var(--cream); transition:transform .35s,opacity .35s}
+
+/* MOBILE OVERLAY */
+.moverlay{
+  position:fixed; inset:0; z-index:899;
+  background:rgba(10,18,12,0.98);
+  backdrop-filter:blur(16px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:44px;
+  opacity:0; pointer-events:none;
+  transition:opacity .4s var(--ease);
+}
+.moverlay.open{opacity:1; pointer-events:all}
+.moverlay a{
+  font-family:var(--display);
+  font-size:clamp(2rem,7vw,3.5rem);
+  font-style:italic;
+  font-weight:500;
+  color:var(--cream);
+  transition:color .3s, letter-spacing .2s;
+}
+.moverlay a:hover{color:var(--gold); letter-spacing:2px;}
+.moverlay-x{
+  position:absolute; top:28px; right:32px;
+  background:none; border:none;
+  color:var(--cream-dim); font-size:1.6rem;
+  transition:color .3s;
+}
+
+/* HERO — refined background gradient overlay */
+.hero{
+  min-height:100svh;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding-top:100px;
+  overflow:hidden;
+  position:relative;
+}
+.hero-bg{
+  position:absolute; inset:0;
+  z-index:0;
+}
+.hero-bg img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center 30%;
+  filter:grayscale(20%) brightness(0.42) contrast(1.05);
+  transform:scale(1.06);
+  animation:hzoom 14s var(--easeOut) forwards;
+}
+@keyframes hzoom{to{transform:scale(1)}}
+.hero-bg::after{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    linear-gradient(100deg, rgba(10,18,12,0.85) 0%, rgba(10,18,12,0.3) 55%),
+    linear-gradient(to top,   rgba(6,12,8,0.96) 0%, transparent 60%);
+}
+.hero-content{
+  position:relative; z-index:1;
+  display:flex; flex-direction:column;
+  justify-content:center;
+  padding:0 60px;
+  max-width:1100px;
+}
+.hero-eyebrow{
+  font-family:var(--head);
+  font-size:.7rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:28px;
+  display:flex; align-items:center; gap:16px;
+  opacity:0;
+  animation:fadeUp .9s var(--easeOut) .5s forwards;
+}
+.hero-eyebrow span{display:inline-block; width:38px; height:1.5px; background:var(--gold)}
+.hero-title{
+  font-family:var(--display);
+  font-size:clamp(4rem,10vw,10rem);
+  font-weight:700;
+  line-height:.92;
+  letter-spacing:-.02em;
+  margin-bottom:36px;
+}
+.hero-title .t1{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:1.2px rgba(220,230,200,0.35);
+  opacity:0;
+  animation:fadeUp 1s var(--easeOut) .7s forwards;
+}
+.hero-title .t2{
+  display:block;
+  font-style:italic;
+  color:var(--cream);
+  opacity:0;
+  animation:fadeUp 1s var(--easeOut) .85s forwards;
+}
+.hero-title .t2 em{font-style:normal; color:var(--gold); text-shadow:0 0 6px rgba(203,158,92,0.3);}
+.hero-tagline{
+  font-size:clamp(.85rem,1.15vw,1rem);
+  color:var(--cream-dim);
+  line-height:1.8;
+  max-width:460px;
+  margin-bottom:48px;
+  opacity:0;
+  animation:fadeUp .9s var(--easeOut) 1.05s forwards;
+}
+.hero-btns{
+  display:flex; align-items:center; gap:24px;
+  opacity:0;
+  animation:fadeUp .9s var(--easeOut) 1.2s forwards;
+}
+.btn-primary{
+  font-family:var(--head);
+  font-size:.68rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  background:var(--gold);
+  color:var(--black);
+  border:none;
+  padding:14px 34px;
+  display:inline-flex; align-items:center; gap:12px;
+  transition:all .35s;
+  font-weight:600;
+}
+.btn-primary:hover{background:var(--gold-hi); gap:18px; letter-spacing:.28em;}
+.btn-ghost{
+  font-family:var(--head);
+  font-size:.68rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--cream-dim);
+  border:none;
+  background:none;
+  padding:14px 0;
+  border-bottom:1.5px solid var(--border);
+  transition:color .3s,border-color .3s;
+}
+.btn-ghost:hover{color:var(--gold); border-color:var(--gold);}
+.hero-scroll{
+  position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:24px 60px;
+  border-top:1px solid var(--border);
+  opacity:0;
+  animation:fadeIn .9s var(--easeOut) 1.6s forwards;
+}
+.scroll-line{
+  width:52px; height:1.5px;
+  background:linear-gradient(to right, var(--gold), transparent);
+  animation:pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* MARQUEE — dark green base */
+.marquee{
+  background: var(--gold);
+  padding:12px 0;
+  overflow:hidden;
+}
+.marquee-inner{
+  display:inline-flex; gap:36px;
+  animation:marq 26s linear infinite;
+  font-family:var(--head);
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--black);
+}
+.msep{font-style:normal; opacity:.6;}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee2{
+  overflow:hidden;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:10px 0;
+  background: rgba(14,23,17,0.5);
+}
+.marquee2 .marquee-inner{
+  animation-direction:reverse;
+  animation-duration:32s;
+  color:rgba(220,230,200,0.25);
+  font-weight:450;
+  gap:40px;
+}
+
+/* SECTIONS SHARED */
+.sec-tag{
+  font-family:var(--head);
+  font-size:.66rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+  display:flex; align-items:center; gap:12px;
+}
+.sec-tag::before{content:''; display:inline-block; width:22px; height:1.5px; background:var(--gold)}
+.sec-h{
+  font-family:var(--display);
+  font-size:clamp(2.3rem,4.2vw,3.8rem);
+  font-weight:700;
+  line-height:1.08;
+  color:var(--cream);
+}
+.sec-h em{font-style:italic; color:var(--gold);}
+
+/* reveal */
+.rv{opacity:0; transform:translateY(36px); transition:opacity .9s var(--easeOut),transform .9s var(--easeOut);}
+.rv.in{opacity:1; transform:translateY(0);}
+
+/* SHOWREEL */
+.reel{padding:100px 60px; max-width:1400px; margin:0 auto}
+.reel-wrap{
+  position:relative;
+  padding-bottom:56.25%;
+  border:1px solid var(--border);
+  background:var(--surface);
+  box-shadow:0 12px 28px -8px rgba(0,0,0,0.4);
+}
+
+/* POSTER GRID — deeper green accents */
+.poster-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  margin-bottom:80px;
+}
+.poster-card-img{
+  position:relative;
+  aspect-ratio:2/3;
+  overflow:hidden;
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+.poster-card-img img{
+  filter:grayscale(20%) contrast(1.05);
+  transition:transform .7s var(--ease),filter .5s;
+}
+.poster-card:hover .poster-card-img img{
+  transform:scale(1.07);
+  filter:grayscale(0%) contrast(1.1);
+}
+.poster-card-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(6,15,8,0.96) 0%, rgba(6,15,8,0.3) 65%, transparent 100%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:22px;
+  opacity:0;
+  transition:opacity .4s var(--ease);
+}
+.poster-card:hover .poster-card-overlay{opacity:1}
+.poster-card-tag{color:var(--gold); letter-spacing:.2em;}
+.poster-card-title{font-family:var(--display); font-size:1.15rem; font-weight:700;}
+.poster-card-label-title{
+  font-family:var(--display);
+  font-size:1rem;
+  font-weight:700;
+  transition:color .3s;
+}
+.poster-card:hover .poster-card-label-title{color:var(--gold);}
+
+/* PROJECT ROWS */
+.prow{
+  display:grid;
+  grid-template-columns:64px 1fr auto;
+  gap:40px;
+  padding:40px 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.prow::before{
+  content:''; position:absolute;
+  left:-60px; right:-60px; top:0; bottom:0;
+  background:var(--gold-bg); opacity:0;
+  transition:opacity .45s;
+}
+.prow:hover::before{opacity:1}
+.pnum{
+  font-family:var(--display);
+  font-size:1.7rem;
+  font-weight:700;
+  font-style:italic;
+  color:rgba(203,158,92,0.35);
+  transition:color .4s;
+}
+.prow:hover .pnum{color:var(--gold)}
+.ptitle{
+  font-family:var(--display);
+  font-size:clamp(1.4rem,2.1vw,2rem);
+  font-weight:700;
+  transition:color .3s;
+}
+.prow:hover .ptitle{color:var(--gold)}
+.prole{font-family:var(--head); color:var(--gold); letter-spacing:.2em; font-size:.63rem;}
+.pdesc{font-size:.85rem; color:var(--cream-dim); line-height:1.85}
+.ptag{border:1px solid var(--border); transition:all .3s;}
+.prow:hover .ptag{border-color:var(--border-gold); color:var(--gold); background:rgba(203,158,92,0.05);}
+
+/* GALLERY */
+.gi img, .gi-t img{
+  filter:grayscale(25%) contrast(1.08);
+  transition:transform .7s var(--ease), filter .5s;
+}
+.gi:hover img, .gi-t:hover img{transform:scale(1.05); filter:grayscale(0%) contrast(1.1);}
+
+/* ABOUT SECTION — fresh organic */
+.about{
+  background: var(--ink);
+  border-top:1px solid var(--border);
+}
+.about-quote{
+  font-family:var(--display);
+  font-size:clamp(2rem,3.8vw,3.5rem);
+  font-style:italic;
+  line-height:1.15;
+  color:var(--cream);
+  border-left:3px solid var(--gold);
+  padding-left:28px;
+}
+.astat-n{color:var(--gold); font-weight:800;}
+.skill{
+  border-bottom:1px solid var(--border);
+  transition:padding-left .3s, color .3s;
+}
+.skill:hover{color:var(--cream); padding-left:12px;}
+.skill::before{content:'✦'; color:var(--gold); font-size:.7rem;}
+.edu{
+  background:rgba(22,34,26,0.7);
+  border-left:2px solid var(--gold);
+}
+.edu-badge{color:var(--gold); border-color:var(--border-gold);}
+
+/* SERVICES CARDS */
+.scard{
+  background:var(--panel);
+  border:1px solid var(--border);
+  transition:all .4s;
+}
+.scard:hover{
+  background:var(--surface);
+  border-color:var(--border-gold);
+  transform:translateY(-4px);
+}
+.scard-num{
+  font-family:var(--display);
+  font-size:3.2rem;
+  font-weight:700;
+  font-style:italic;
+  color:rgba(203,158,92,0.2);
+}
+.scard:hover .scard-num{color:rgba(203,158,92,0.5);}
+.scard h3{font-family:var(--display); font-size:1.2rem; font-weight:700;}
+
+/* CONTACT */
+.cheading .ct1{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(220,230,200,0.22);
+}
+.cheading .ct2 em{font-style:normal; color:var(--gold);}
+.clink{
+  border-bottom:1px solid var(--border);
+  transition:padding-left .3s;
+}
+.clink:hover{padding-left:12px;}
+.clink-lbl{color:var(--gold);}
+.clink-val{font-size:.95rem;}
+.fsubmit{
+  background:var(--gold);
+  color:var(--black);
+  font-weight:700;
+  transition:all .3s;
+}
+.fsubmit:hover{background:var(--gold-hi); gap:22px; letter-spacing:.26em;}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+}
+.flogo{letter-spacing:.2em;}
+.flinks a:hover{color:var(--gold); letter-spacing:1px;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav,.reel,.projects,.films-section,.about,.services,.contact,footer{padding-left:36px;padding-right:36px}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:860px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .poster-grid{grid-template-columns:repeat(2,1fr); gap:20px}
+  .about{grid-template-columns:1fr}
+  .cbody{grid-template-columns:1fr}
+  .prow{grid-template-columns:48px 1fr auto; gap:20px}
+}
+@media(max-width:560px){
+  .poster-grid{grid-template-columns:1fr}
+  body{cursor:auto}
+  #cur,#cur2{display:none}
+  .hero-title{font-size:clamp(3rem,13vw,5rem)}
+  .frow{grid-template-columns:1fr}
+}
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(32px)}
+  to{opacity:1; transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}to{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-logo">Shashank Kumar</div>
+  <nav class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Films</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="moverlay" id="moverlay">
+  <button class="moverlay-x" id="moverlayX">✕</button>
+  <a href="#about" onclick="closeM()">About</a>
+  <a href="#work" onclick="closeM()">Projects</a>
+  <a href="#services" onclick="closeM()">Services</a>
+  <a href="#contact" onclick="closeM()">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src="h1.jpg" alt="Cinematography hero" />
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow"><span></span>Cinematographer — New Delhi, India</p>
+    <h1 class="hero-title">
+      <span class="t1">Shashank</span>
+      <span class="t2"><em>Kumar</em></span>
+    </h1>
+    <p class="hero-tagline">
+      Visual storytelling through light, lens, and intention.<br/>
+      Every frame guided by lived experience and cinematic craft.
+    </p>
+    <div class="hero-btns">
+      <a href="#work" class="btn-primary">
+        View Projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
+      <a href="mailto:Armansing5120@gmail.com" class="btn-ghost">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-left"><div class="scroll-line"></div>Scroll to explore</div>
+    <div class="hero-scroll-right">
+      <div class="hero-stat"><span class="hero-stat-num">Top 3</span><span class="hero-stat-lbl">Admission rank</span></div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat"><span class="hero-stat-num">3+</span><span class="hero-stat-lbl">Years on set</span></div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat"><span class="hero-stat-num">✦</span><span class="hero-stat-lbl">Distinction</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-inner">
+    <span>Lighting Design</span><em class="msep">✦</em>
+    <span>Camera Operation</span><em class="msep">✦</em>
+    <span>Music Videos</span><em class="msep">✦</em>
+    <span>Lens Selection</span><em class="msep">✦</em>
+    <span>Color Grading</span><em class="msep">✦</em>
+    <span>Visual Storytelling</span><em class="msep">✦</em>
+    <span>Film Production</span><em class="msep">✦</em>
+    <span>Mindscreen Film Institute</span><em class="msep">✦</em>
+  </div>
+</div>
+
+<div class="reel rv" id="mywork">
+  <div class="reel-header">
+    <div><p class="sec-tag">Showreel</p><h2 class="sec-h">My <em>Work</em></h2></div>
+    <div class="reel-header-right">2024 — 2025</div>
+  </div>
+  <div class="reel-wrap">
+    <iframe id="reelIframe" src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1&color=white" title="Shashank Kumar Showreel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="reel-ph" id="reelPh" style="display: flex;"><div class="reel-ph-icon">▶</div><h3>Your Showreel</h3><p>Replace <code>VIDEO_ID</code> with your YouTube or Vimeo ID, then delete this placeholder.</p></div>
+  </div>
+  <p class="reel-note">Cinematography · Music Videos · Brand Films · Short Film</p>
+</div>
+
+<section class="films-section" id="work">
+  <div class="films-top rv"><p class="sec-tag">Feature Films</p><h2 class="sec-h">Film <em>Credits</em></h2></div>
+  <div class="poster-grid">
+    <div class="poster-card rv"><div class="poster-card-img"><img src="poster-90s.jpg" alt="poster" loading="lazy"/><div class="poster-card-overlay"><span class="poster-card-tag">Feature · 2025</span><p class="poster-card-title">#90's Middle Class Biopic</p><p class="poster-card-role">Associate Cinematographer</p></div></div><div class="poster-card-label"><p class="poster-card-label-title">#90's Middle Class Biopic</p><div class="poster-card-label-meta"><span class="poster-card-label-role">Assoc. Cinematographer</span><span class="poster-card-label-year">2025</span></div></div></div>
+    <div class="poster-card rv"><div class="poster-card-img"><img src="poster-shubham (2).png" alt="Shubham" loading="lazy"/><div class="poster-card-overlay"><span class="poster-card-tag">Feature · 2025</span><p class="poster-card-title">Shubham</p><p class="poster-card-role">Associate Cinematographer</p></div></div><div class="poster-card-label"><p class="poster-card-label-title">Shubham</p><div class="poster-card-label-meta"><span class="poster-card-label-role">Assoc. Cinematographer</span><span class="poster-card-label-year">2025</span></div></div></div>
+    <div class="poster-card rv"><div class="poster-card-img"><img src="poster-g2.png" alt="Goodacchari 2" loading="lazy"/><div class="poster-card-overlay"><span class="poster-card-tag">Feature · 2026</span><p class="poster-card-title">Goodacchari 2</p><p class="poster-card-role">Associate Cinematographer</p></div></div><div class="poster-card-label"><p class="poster-card-label-title">Goodacchari 2</p><div class="poster-card-label-meta"><span class="poster-card-label-role">Assoc. Cinematographer</span><span class="poster-card-label-year">2026</span></div></div></div>
+    <div class="poster-card rv"><div class="poster-card-img"><img src="poster-dacoit (3).png" alt="Dacoit" loading="lazy"/><div class="poster-card-overlay"><span class="poster-card-tag">Feature · 2026</span><p class="poster-card-title">Dacoit</p><p class="poster-card-role">Associate Cinematographer</p></div></div><div class="poster-card-label"><p class="poster-card-label-title">Dacoit</p><div class="poster-card-label-meta"><span class="poster-card-label-role">Assoc. Cinematographer</span><span class="poster-card-label-year">2026</span></div></div></div>
+    <div class="poster-card rv"><div class="poster-card-img"><img src="poster-epic.png" alt="Epic" loading="lazy"/><div class="poster-card-overlay"><span class="poster-card-tag">Feature · 2026</span><p class="poster-card-title">Epic</p><p class="poster-card-role">Associate Cinematographer</p></div></div><div class="poster-card-label"><p class="poster-card-label-title">Epic</p><div class="poster-card-label-meta"><span class="poster-card-label-role">Assoc. Cinematographer</span><span class="poster-card-label-year">2026</span></div></div></div>
+    <div class="poster-card rv"><div class="poster-card-img"><img src="poster-paradha.png" alt="Paradha" loading="lazy"/><div class="poster-card-overlay"><span class="poster-card-tag">Feature · 2025</span><p class="poster-card-title">Paradha</p><p class="poster-card-role">Associate Cinematographer</p></div></div><div class="poster-card-label"><p class="poster-card-label-title">Paradha</p><div class="poster-card-label-meta"><span class="poster-card-label-role">Assoc. Cinematographer</span><span class="poster-card-label-year">2025</span></div></div></div>
+  </div>
+</section>
+
+<section class="projects" id="other-work">
+  <div class="projects-top rv"><div><p class="sec-tag">Other Work</p><h2 class="sec-h">More <em>Experience</em></h2></div><div class="projects-top-right"><p>Music video production, brand content, and academic film work — from concept to final frame with precision and artistic intent.</p></div></div>
+  <ul class="plist">
+    <li class="prow rv"><div class="pnum">01</div><div><h3 class="ptitle">Music Video Projects</h3><p class="prole">Director of Photography — Multiple Production Companies</p><p class="pdesc">Collaborated with multiple video production companies. Developed creative decks, shot breakdowns, and technical plans. Aligned visuals with brand identity through strategic lighting and camera angles.</p></div><div class="pmeta"><span class="ptag">Music Video</span><span class="pyear">2023–25</span></div><div class="phimg"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=500&q=80" alt="MV"/></div></li>
+    <li class="prow rv"><div class="pnum">02</div><div><h3 class="ptitle">Brand Content & Social Media</h3><p class="prole">Cinematographer — End-to-End Production</p><p class="pdesc">Managed end-to-end video production, from logistics to final social media posts. Led visual treatment across Reels, photos, and YouTube videos for cohesive narrative.</p></div><div class="pmeta"><span class="ptag">Commercial</span><span class="pyear">2024–25</span></div><div class="phimg"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&q=80" alt="Brand"/></div></li>
+    <li class="prow rv"><div class="pnum">03</div><div><h3 class="ptitle">Academic Film Projects</h3><p class="prole">Director of Photography — Mindscreen Film Institute</p><p class="pdesc">Multiple hands-on academic film projects during Diploma in Cinematography. Specialised in structured day and night lighting setups, advanced camera operations. Graduated with distinction.</p></div><div class="pmeta"><span class="ptag">Short Film</span><span class="pyear">2022–23</span></div><div class="phimg"><img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=500&q=80" alt="Academic"/></div></li>
+  </ul>
+</section>
+
+<section class="gallery rv">
+  <div class="gscroll" id="gscroll">
+    <div class="gi"><img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&q=85" alt="still" loading="lazy"/></div>
+    <div class="gi gi-t"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=85" alt="still2" loading="lazy"/></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&q=85" alt="still3" loading="lazy"/></div>
+    <div class="gi gi-t"><img src="https://images.unsplash.com/photo-1565120319398-da008925fc1d?w=800&q=85" alt="still4" loading="lazy"/></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1500210600724-67c5e2e06b0c?w=800&q=85" alt="still5" loading="lazy"/></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=85" alt="still6" loading="lazy"/></div>
+    <div class="gi gi-t"><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=85" alt="still7" loading="lazy"/></div>
+  </div>
+  <p class="ghint">← drag to explore →</p>
+</section>
+
+<section class="about" id="about">
+  <div class="about-left rv"><p class="sec-tag">About</p><p class="about-quote">“Each frame guided by lived experience and a commitment to <em>visual authenticity.</em>”</p>
+    <div class="astats"><div class="astat"><span class="astat-n">Top 3</span><span class="astat-l">Admission ranking</span></div><div class="astat"><span class="astat-n">3+</span><span class="astat-l">Years on set</span></div><div class="astat"><span class="astat-n">✦</span><span class="astat-l">Graduated with distinction</span></div><div class="astat"><span class="astat-n">MFI</span><span class="astat-l">Mindscreen Film Institute</span></div></div>
+  </div>
+  <div class="about-right rv"><div class="aportrait"><img src="h2.jpg" alt="Shashank Kumar"/><div class="aportrait-chip">New Delhi, India</div></div>
+    <div class="abio"><div class="ablk"><p class="ablk-lbl">Bio</p><p>Cinematographer focused on visual storytelling, combining technical expertise in camera systems, lens selection, and lighting design with a strong cinematic sensibility. Experienced in collaborating with agencies and creative teams to deliver high-quality, emotionally driven visuals.</p></div>
+    <div class="ablk"><p class="ablk-lbl">My Approach</p><p>I approach cinematography as a craft where emotion, environment, and narrative intersect through the lens. Each frame I create is guided by lived experiences and a commitment to visual authenticity.</p></div>
+    <div class="ablk"><p class="ablk-lbl">Skills</p><ul class="skills"><li class="skill">Lighting Design — Day & Night Setups</li><li class="skill">Camera Operation & Lens Handling</li><li class="skill">Film Production & On-Set Execution</li><li class="skill">Visual Story Development</li><li class="skill">Color Correction & Grading</li></ul></div>
+    <div class="ablk"><p class="ablk-lbl">Education</p><div class="edu"><div class="edu-badge">MFI</div><div class="edu-info"><strong>Mindscreen Film Institute</strong><span>Diploma in Cinematography — Graduated with Distinction</span><span class="edu-note">Specialised in camera operations & advanced lighting techniques including structured day & night setups.</span></div></div></div>
+  </div></div>
+</section>
+
+<div class="marquee2"><div class="marquee-inner"><span>Concept to Final Frame</span><em class="msep">·</em><span>Day & Night Lighting</span><em class="msep">·</em><span>Creative Decks</span><em class="msep">·</em><span>Shot Breakdowns</span><em class="msep">·</em><span>Post-Production</span><em class="msep">·</em><span>Brand Identity</span><em class="msep">·</em><span>Reels & YouTube</span><em class="msep">·</em></div></div>
+
+<section class="services" id="services"><div class="services-top rv"><p class="sec-tag">Services</p><h2 class="sec-h">What I <em>Offer</em></h2></div>
+  <div class="sgrid"><div class="scard rv"><div class="scard-num">01</div><h3>Lighting Design</h3><p>Day and night lighting setups crafted to serve the story — natural, dramatic, or deeply stylised.</p></div>
+  <div class="scard rv"><div class="scard-num">02</div><h3>Cinematography</h3><p>Camera operation, lens selection, and frame composition — translating script into emotionally resonant imagery.</p></div>
+  <div class="scard rv"><div class="scard-num">03</div><h3>Music Video Production</h3><p>Full-service music video cinematography — creative decks, shot breakdowns, on-set execution, and post-production support.</p></div>
+  <div class="scard rv"><div class="scard-num">04</div><h3>Brand & Social Content</h3><p>End-to-end video production for brands — Reels, YouTube, and long-form content with cohesive visual identity.</p></div></div>
+</section>
+
+<section class="contact" id="contact"><div class="ctop rv"><p class="sec-tag">Contact</p><h2 class="cheading"><span class="ct1">Let’s talk</span><span class="ct2">and see <em>where</em><br/>it takes us.</span></h2></div>
+<div class="cbody rv"><div class="clinks"><a href="mailto:Armansing5120@gmail.com" class="clink"><span class="clink-lbl">Email</span><span class="clink-val">Armansing5120@gmail.com →</span></a><a href="tel:+918368084966" class="clink"><span class="clink-lbl">Phone</span><span class="clink-val">(+91) 83680 84966 →</span></a><a href="https://www.instagram.com/ig_shashanksinghh" target="_blank" class="clink"><span class="clink-lbl">Instagram</span><span class="clink-val">@ig_shashanksinghh →</span></a><a href="https://www.imdb.com/name/nm13694200/" target="_blank" class="clink"><span class="clink-lbl">IMDB</span><span class="clink-val">Shashank Kumar →</span></a><div class="clink clink-static"><span class="clink-lbl">Open to</span><span class="clink-val">Music Videos · Brand Films · Short Films · Collabs</span></div></div>
+<form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"><div class="frow"><div class="ffld"><label for="fn">Name</label><input id="fn" type="text" name="name" placeholder="Your name" required/></div><div class="ffld"><label for="fe">Email</label><input id="fe" type="email" name="email" placeholder="your@email.com" required/></div></div>
+<div class="ffld"><label for="fp">Project Type</label><input id="fp" type="text" name="project" placeholder="Music video, brand film, short film…"/></div>
+<div class="ffld"><label for="fm">Message</label><textarea id="fm" name="message" rows="5" placeholder="Tell me about the project…" required></textarea></div>
+<button type="submit" class="fsubmit"><span>Send Message</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+<p class="fsuccess" id="fsuccess">Message sent — I’ll be in touch soon.</p></form></div>
+</section>
+
+<footer><div><span class="flogo">Shashank Kumar</span><span class="fsub">Cinematographer · New Delhi, India</span></div><div class="flinks"><a href="https://www.instagram.com/ig_shashanksinghh" target="_blank">Instagram</a><a href="https://www.imdb.com/name/nm13694200/" target="_blank">IMDB</a><a href="mailto:Armansing5120@gmail.com">Email</a></div><p class="fcopy">© 2025 Shashank Kumar. All rights reserved.</p></footer>
+
+<script>
+const cur=document.getElementById('cur');
+if(cur && window.matchMedia('(pointer:fine)').matches){
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px'; cur.style.top=e.clientY+'px';},{passive:true});
+  document.querySelectorAll('a,button,.poster-card,.prow,.gi,.scard,.clink').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov')); el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});
+}
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>50),{passive:true});
+const burger=document.getElementById('burger'), mo=document.getElementById('moverlay'), mx2=document.getElementById('moverlayX');
+burger.addEventListener('click',()=>{const o=mo.classList.toggle('open'); burger.classList.toggle('open',o); document.body.style.overflow=o?'hidden':'';});
+mx2.addEventListener('click',closeM);
+function closeM(){mo.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow='';}
+const ri=document.getElementById('reelIframe'), rp=document.getElementById('reelPh');
+if(ri && rp && ri.src.includes('VIDEO_ID')) rp.style.display='flex'; else if(rp) rp.style.display='none';
+const rvEls=document.querySelectorAll('.rv');
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); obs.unobserve(e.target);}});},{threshold:.07}).observe(document.body); // simplified but fine
+const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); obs.unobserve(e.target);}});},{threshold:.07});
+rvEls.forEach(el=>obs.observe(el));
+document.querySelectorAll('.prow').forEach(row=>{const img=row.querySelector('.phimg'); if(img) row.addEventListener('mousemove',e=>{img.style.left=(e.clientX+28)+'px'; img.style.top=(e.clientY-120)+'px';});});
+const gs=document.getElementById('gscroll'); if(gs){let down=false,sx,sl; gs.addEventListener('mousedown',e=>{down=true; sx=e.pageX-gs.offsetLeft; sl=gs.scrollLeft;}); gs.addEventListener('mouseleave',()=>down=false); gs.addEventListener('mouseup',()=>down=false); gs.addEventListener('mousemove',e=>{if(!down)return; e.preventDefault(); gs.scrollLeft=sl-(e.pageX-gs.offsetLeft-sx)*1.4;});}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href')); if(t){e.preventDefault(); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-76,behavior:'smooth'}); closeM();}});});
+const form=document.getElementById('contactForm'), fok=document.getElementById('fsuccess');
+if(form){form.addEventListener('submit',async e=>{e.preventDefault(); const btn=form.querySelector('.fsubmit'); btn.style.opacity='.5'; btn.style.pointerEvents='none'; try{const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}); if(r.ok){form.reset(); fok.classList.add('show'); setTimeout(()=>fok.classList.remove('show'),8000);}}catch{} btn.style.opacity='1'; btn.style.pointerEvents='auto';});}
+const secs=document.querySelectorAll('section[id]'), nls=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let cur=''; secs.forEach(s=>{if(scrollY>=s.offsetTop-160)cur=s.id;}); nls.forEach(a=>{a.style.color=a.getAttribute('href')===('#'+cur)?'var(--cream)':'var(--cream-dim)';});},{passive:true});
+</script>
+</body>
+</html>
